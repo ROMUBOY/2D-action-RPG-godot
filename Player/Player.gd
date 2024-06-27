@@ -17,7 +17,7 @@ var state = MOVE
 
 var motion = Vector2.ZERO
 
-func _physics_process(delta):
+func _process(delta):
 	match state:
 		MOVE:
 			move_state(delta)

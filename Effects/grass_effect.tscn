@@ -1,6 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://cscekooxfjc20"]
+[gd_scene load_steps=9 format=3 uid="uid://duq6faxm87f63"]
 
-[ext_resource type="Script" path="res://Effects/grass_effect.gd" id="1_732mw"]
+[ext_resource type="Script" path="res://Effects/effect.gd" id="2_ftisw"]
 [ext_resource type="Texture2D" uid="uid://b1qxea67ik6vv" path="res://Effects/GrassEffect.png" id="2_fv4x4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gr3vv"]
@@ -23,7 +23,7 @@ region = Rect2(96, 0, 32, 32)
 atlas = ExtResource("2_fv4x4")
 region = Rect2(128, 0, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_suedb"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_4kj07"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -46,14 +46,8 @@ animations = [{
 "speed": 15.0
 }]
 
-[node name="GrassEffect" type="Node2D"]
-script = ExtResource("1_732mw")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_suedb")
+[node name="GrassEffect" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_4kj07")
 animation = &"animate"
 autoplay = "animate"
-frame = 4
-frame_progress = 1.0
-
-[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+script = ExtResource("2_ftisw")

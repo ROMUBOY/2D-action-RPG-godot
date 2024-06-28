@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var roll_speed = 125
 @onready var animation_player = $AnimationPlayer
 @onready var animation_tree = $AnimationTree
+@onready var sword_hit_box = $HitBoxPivot/SwordHitBox
 @onready var animationState = animation_tree.get("parameters/playback")
 
 enum {
@@ -21,6 +22,7 @@ var roll_vector = Vector2.DOWN
 
 func _ready():
 	animation_tree.set("parameters/Attack/blend_position", Vector2.DOWN)
+	sword_hit_box.knockback_vector = roll_vector
 
 func _physics_process(delta):
 	match state:
@@ -38,6 +40,7 @@ func move_state(delta):
 	
 	if input_vector != Vector2.ZERO:
 		roll_vector = input_vector
+		sword_hit_box.knockback_vector = input_vector
 		animation_tree.set("parameters/Idle/blend_position", input_vector)
 		animation_tree.set("parameters/Run/blend_position", input_vector)
 		animation_tree.set("parameters/Attack/blend_position", input_vector)

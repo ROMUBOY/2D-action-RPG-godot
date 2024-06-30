@@ -834,11 +834,18 @@ tile_set = SubResource("TileSet_sjt75")
 format = 2
 layer_0/tile_data = PackedInt32Array(327681, 131072, 2, 327680, 262144, 1, 262144, 589824, 0, 262145, 131072, 0, 196608, 131072, 0, 262143, 0, 0, 327679, 393216, 3, 327678, 262144, 0, 393214, 196608, 1, 458750, 262144, 3, 458751, 65536, 3, 393216, 458752, 3, 65540, 0, 3, 65541, 458752, 3, 5, 262144, 0, 6, 65536, 3, 7, 393216, 0, 65543, 0, 1, 131079, 0, 1, 196615, 0, 2, 196616, 327680, 3, 196617, 524288, 3, 196618, 458752, 3, 131082, 458752, 1, 65546, 131072, 1, 10, 131072, 0, 9, 65536, 0, 8, 65536, 0, 65544, 327680, 1, 65545, 393216, 1, 131081, 524288, 1, 131080, 327680, 1)
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(93, 57)
+position_smoothing_enabled = true
+
 [node name="Ysort" type="Node2D" parent="."]
 y_sort_enabled = true
 
 [node name="Player" parent="Ysort" instance=ExtResource("2_x740x")]
 position = Vector2(93, 57)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Ysort/Player"]
+remote_path = NodePath("../../../Camera2D")
 
 [node name="Bushes" type="Node2D" parent="Ysort"]
 y_sort_enabled = true
@@ -905,6 +912,8 @@ position = Vector2(32, 72)
 [node name="Bat3" parent="Ysort" instance=ExtResource("7_chuy2")]
 position = Vector2(96, 168)
 
-[node name="HeartUI" parent="." instance=ExtResource("8_v454b")]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HeartUI" parent="CanvasLayer" instance=ExtResource("8_v454b")]
 offset_right = 48.0
 offset_bottom = 24.0

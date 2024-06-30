@@ -8,6 +8,7 @@ extends CharacterBody2D
 @onready var player_detection_zone = $PlayerDetectionZone
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var hurt_box = $hurt_box
+@onready var soft_collision = $SoftCollision
 
 const enemyDeathEffect = preload("res://Effects/enemy_death_effect.tscn")
 
@@ -37,6 +38,8 @@ func _physics_process(delta):
 				state = IDLE
 			animated_sprite_2d.flip_h = velocity.x < 0
 	
+	if soft_collision.is_colliding():
+		velocity += soft_collision.get_push_vector() * delta * 400
 	move_and_slide()
 
 func seek_player():

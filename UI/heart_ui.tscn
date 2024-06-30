@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1md6orrr5pd4"]
+
+[ext_resource type="Script" path="res://UI/heart_ui.gd" id="1_skb8p"]
+[ext_resource type="Texture2D" uid="uid://cdkhd7m567q4q" path="res://UI/HeartUIEmpty.png" id="2_lp8yo"]
+[ext_resource type="Texture2D" uid="uid://b5glbven8f7e3" path="res://UI/HeartUIFull.png" id="3_awyyx"]
+
+[node name="HeartUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_skb8p")
+
+[node name="HeartUIEmpty" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 11.0
+texture = ExtResource("2_lp8yo")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="HeartUIFull" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 11.0
+texture = ExtResource("3_awyyx")
+expand_mode = 1
+stretch_mode = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cca05q6ejthj"]
+[gd_scene load_steps=18 format=3 uid="uid://cca05q6ejthj"]
 
 [ext_resource type="Texture2D" uid="uid://csqpcsj67e8tv" path="res://Enemies/Bat.png" id="1_j6l2o"]
 [ext_resource type="Script" path="res://Enemies/bat.gd" id="1_vc6b4"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ckrpd65ywtqdg" path="res://Hurtboxes + Hitboxes/hurt_box.tscn" id="3_ljpqe"]
 [ext_resource type="PackedScene" uid="uid://dlqm0ywbsgo2x" path="res://stats.tscn" id="5_ppy8x"]
 [ext_resource type="PackedScene" uid="uid://bcyurrwgosjmt" path="res://Enemies/player_detection_zone.tscn" id="6_lvol2"]
+[ext_resource type="PackedScene" uid="uid://u4d3bvd3da7g" path="res://Hurtboxes + Hitboxes/hit_box.tscn" id="7_7ld0q"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7scxx"]
 atlas = ExtResource("1_j6l2o")
@@ -60,6 +61,9 @@ height = 18.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_x6j5q"]
 radius = 53.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_af7p7"]
+radius = 5.09902
+
 [node name="Bat" type="CharacterBody2D"]
 collision_layer = 16
 script = ExtResource("1_vc6b4")
@@ -92,8 +96,17 @@ max_health = 2
 shape = SubResource("CircleShape2D_x6j5q")
 debug_color = Color(0, 0.6, 0.701961, 0.0980392)
 
+[node name="HitBox" parent="." instance=ExtResource("7_7ld0q")]
+collision_layer = 4
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+position = Vector2(0, -16)
+shape = SubResource("CircleShape2D_af7p7")
+disabled = false
+
 [connection signal="area_entered" from="hurt_box" to="." method="_on_hurt_box_area_entered"]
 [connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
 
 [editable path="hurt_box"]
 [editable path="PlayerDetectionZone"]
+[editable path="HitBox"]

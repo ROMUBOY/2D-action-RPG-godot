@@ -4,10 +4,12 @@ extends CharacterBody2D
 @export var acceleration = 500
 @export var friction = 500
 @export var roll_speed = 125
+
 @onready var animation_player = $AnimationPlayer
 @onready var animation_tree = $AnimationTree
 @onready var sword_hit_box = $HitBoxPivot/SwordHitBox
 @onready var animationState = animation_tree.get("parameters/playback")
+@onready var hurt_box = $hurt_box
 
 enum {
 	MOVE,
@@ -19,8 +21,10 @@ var state = MOVE
 
 var motion = Vector2.ZERO
 var roll_vector = Vector2.DOWN
+var stats = PlayerStats
 
 func _ready():
+	stats.connect("no_health", Callable(self, "queue_free"))
 	animation_tree.set("parameters/Attack/blend_position", Vector2.DOWN)
 	sword_hit_box.knockback_vector = roll_vector
 
@@ -77,3 +81,8 @@ func roll_animation_finished():
 
 func attack_animation_finished():
 	state = MOVE
+
+func _on_hurt_box_area_entered(area):
+	stats.health -= 1
+	hurt_box.start_invencibility(0.5)
+	hurt_box.create_hit_effect()

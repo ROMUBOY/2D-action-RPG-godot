@@ -24,6 +24,7 @@ var roll_vector = Vector2.DOWN
 var stats = PlayerStats
 
 func _ready():
+	randomize()
 	stats.connect("no_health", Callable(self, "queue_free"))
 	animation_tree.set("parameters/Attack/blend_position", Vector2.DOWN)
 	sword_hit_box.knockback_vector = roll_vector

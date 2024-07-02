@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://chqmg6hortjmh"]
+[gd_scene load_steps=15 format=3 uid="uid://chqmg6hortjmh"]
 
 [ext_resource type="Texture2D" uid="uid://de8khyayfxbok" path="res://World/GrassBackground.png" id="1_8njs8"]
 [ext_resource type="Texture2D" uid="uid://ol4ri8u7wmtv" path="res://World/DirtTileset.png" id="2_2k7st"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cca05q6ejthj" path="res://Enemies/bat.tscn" id="7_chuy2"]
 [ext_resource type="PackedScene" uid="uid://c3de8utmsuqpp" path="res://World/tree.tscn" id="7_mu4d8"]
 [ext_resource type="PackedScene" uid="uid://d1md6orrr5pd4" path="res://UI/heart_ui.tscn" id="8_v454b"]
+[ext_resource type="AudioStream" uid="uid://cs2gmd6q4tll7" path="res://Music and Sounds/Music.mp3" id="10_lvy7j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uil21"]
 texture = ExtResource("2_2k7st")
@@ -917,3 +918,7 @@ position = Vector2(96, 168)
 [node name="HeartUI" parent="CanvasLayer" instance=ExtResource("8_v454b")]
 offset_right = 48.0
 offset_bottom = 24.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_lvy7j")
+autoplay = true

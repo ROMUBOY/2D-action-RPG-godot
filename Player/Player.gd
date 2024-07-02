@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+const playerHurtSound = preload("res://Player/player_hurt_sound.tscn")
+
 @export var max_speed = 80
 @export var acceleration = 500
 @export var friction = 500
@@ -84,6 +86,8 @@ func attack_animation_finished():
 	state = MOVE
 
 func _on_hurt_box_area_entered(area):
-	stats.health -= 1
+	stats.health -= area.damage
 	hurt_box.start_invencibility(0.5)
 	hurt_box.create_hit_effect()
+	var playerHurtSoundInstance = playerHurtSound.instantiate()
+	get_tree().current_scene.add_child(playerHurtSoundInstance)
